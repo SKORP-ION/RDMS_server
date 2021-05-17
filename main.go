@@ -1,26 +1,15 @@
 package main
 
 import (
-	"Rostelecom_Device_Management_System/app"
-	"fmt"
+	"Rostelecom_Device_Management_System/rest"
 	"github.com/gorilla/mux"
+	"log"
 	"net/http"
-	"os"
 )
 
 func main() {
-
-	router := mux.NewRouter()
-	router.Use(app.JwtAuthentication)
-
-	port := os.Getenv("srv_port")
-
-	fmt.Printf("Server started at localhost:%s", port)
-
-	err := http.ListenAndServe(":" + port, router)
-
-	if err != nil {
-		fmt.Print(err)
-	}
-
+	r := mux.NewRouter()
+	r.HandleFunc("/getWS", rest.GetWorkstations).Methods("GET")
+	r.HandleFunc("/createWS", rest.RegisteringWorkStation).Methods("POST")
+	log.Fatal(http.ListenAndServe(":8000", r))
 }
