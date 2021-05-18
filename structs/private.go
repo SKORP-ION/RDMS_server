@@ -20,6 +20,6 @@ type Sysinfo struct {
 	Arch string `json:"arch"`
 	Core string `json:"core"`
 	Os string `json:"os"`
-	RDMS_Version string `json:"RMDS_version"`
+	RDMS_Version string `json:"rdms_version"`
 	Anydesk string `json:"anydesk"`
 }

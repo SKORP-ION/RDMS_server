@@ -7,28 +7,32 @@ import (
 	"time"
 )
 
-type SysinfoSql struct {
-	Id uint32 `sql:"ws_id"`
-	Info string `sql:"info"`
-	Ts time.Time `sql:"ts"`
+type SysinfoModel struct {
+	Id uint32 `gorm:"column:ws_id"`
+	Info string `gorm:"info"`
+	Ts time.Time `gorm:"ts"`
 }
 
-func (s SysinfoSql) Create(ws *structs.Workstation, sys *structs.Sysinfo) (error) {
+func (s SysinfoModel) Create(ws *structs.Workstation, sys *structs.Sysinfo) (SysinfoModel, error) {
 	data, err := json.Marshal(sys)
 
 	if err != nil {
-		return errors.New("Can't parse JSON")
+		return s, errors.New("Can't parse JSON")
 	}
 
 	s.Info = string(data)
 
 	if ws.Id == 0 {
-		return errors.New("Workstation not found")
+		return s, errors.New("Workstation not found")
 	}
 	s.Id = ws.Id
 	s.Ts = time.Now().UTC()
 
-	return nil
+	return s, nil
+}
+
+func (SysinfoModel) TableName() string {
+	return "sysinfo"
 }
 
 type TokenSql struct {

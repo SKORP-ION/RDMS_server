@@ -23,7 +23,7 @@ func Authorization(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if ws.Personal_key == recv.Personal_key {
-		token, err := security.CreateToken(ws) //Создание записи в БД о токене
+		token, err := security.CreateToken(ws) //Генерация нового токена для клиента
 		if err != nil {
 			SendResponse(http.StatusInternalServerError, &w, "Internal Error")
 			return

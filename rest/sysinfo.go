@@ -29,7 +29,7 @@ func AddSysInfo(w http.ResponseWriter, r *http.Request) {
 	ws, err := database.GetWorkstationByName(sysinfo.Name)
 
 	if err != nil {
-		SendResponse(http.StatusForbidden, &w, err.Error())
+		SendResponse(http.StatusForbidden, &w, err.Error()) //Workstation not found
 		return
 	}
 

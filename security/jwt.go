@@ -32,7 +32,7 @@ func JwtAuth (r *http.Request) (bool, error) {
 		return false, errors.New("Empty Workstation_name header")
 	}
 
-	token, err := jwt.ParseWithClaims(tk.Token, tk, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tk.Token, &tk, func(token *jwt.Token) (interface{}, error) {
 		return []byte(os.Getenv("token_password")), nil
 	})
 
