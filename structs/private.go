@@ -10,3 +10,16 @@ type Workstation struct {
 	Personal_key string `gorm:"column:personal_key"`
 	Description string `gorm:"column:description"`
 }
+
+type Sysinfo struct {
+	Name string `json:"name"`
+	Model string `json:"model"`
+	Cpu string `json:"cpu"`
+	Ram string `json:"ram"`
+	MBSerial string `json:"MBSerial"`
+	Arch string `json:"arch"`
+	Core string `json:"core"`
+	Os string `json:"os"`
+	RDMS_Version string `json:"RMDS_version"`
+	Anydesk string `json:"anydesk"`
+}

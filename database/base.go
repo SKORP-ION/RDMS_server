@@ -1,8 +1,6 @@
 package database
 
 import (
-	"Rostelecom_Device_Management_System/structs"
-	"errors"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
@@ -34,25 +32,4 @@ func init() {
 	}
 
 	db = conn
-}
-
-func GetWorkstations() []structs.Workstation {
-	var ws_list []structs.Workstation
-	//ws := structs.Workstation{}
-	db.Raw("SELECT * FROM workstations;").Scan(&ws_list)
-	return ws_list
-}
-
-func GetWorkstationByName(name string) (structs.Workstation, error) {
-	ws := structs.Workstation{}
-	db.Raw("SELECT * FROM workstations WHERE name = ?;", name).Scan(&ws)
-	if ws.Id == 0 {
-		return ws, errors.New("Workstation not found")
-	}
-	return ws, nil
-}
-
-func RegisterWS(ws structs.Workstation) error {
-	err := db.Table("workstations").Where("name = ", ws.Name).Update("serial_number", ws.Serial).Error
-	return err
 }

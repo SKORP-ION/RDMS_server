@@ -10,7 +10,7 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
-func sendResponse(status int, w *http.ResponseWriter, data interface{}) {
+func SendResponse(status int, w *http.ResponseWriter, data interface{}) {
 	//wp = Writer_Pointer
 	wp := *w
 	wp.Header().Add("Content-type", "application/json")
