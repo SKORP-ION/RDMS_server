@@ -1,8 +1,8 @@
 package security
 
 import (
-	"Rostelecom_Device_Management_System/database"
-	"Rostelecom_Device_Management_System/structs"
+	"RDMS_server/database"
+	"RDMS_server/structs"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"net/http"

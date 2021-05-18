@@ -1,4 +1,4 @@
-module Rostelecom_Device_Management_System
+module RDMS_server
 
 go 1.15
 

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Rostelecom_Device_Management_System/rest"
+	"RDMS_server/rest"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"

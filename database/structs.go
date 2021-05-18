@@ -1,7 +1,7 @@
 package database
 
 import (
-	"Rostelecom_Device_Management_System/structs"
+	"RDMS_server/structs"
 	"encoding/json"
 	"errors"
 	"time"

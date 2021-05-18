@@ -1,6 +1,6 @@
 package database
 
-import "Rostelecom_Device_Management_System/structs"
+import "RDMS_server/structs"
 
 func PutSysinfo(ws *structs.Workstation, info *structs.Sysinfo) error {
 	s := SysinfoModel{}

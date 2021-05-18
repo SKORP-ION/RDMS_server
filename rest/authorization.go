@@ -1,9 +1,9 @@
 package rest
 
 import (
-	"Rostelecom_Device_Management_System/database"
-	"Rostelecom_Device_Management_System/security"
-	"Rostelecom_Device_Management_System/structs"
+	"RDMS_server/database"
+	"RDMS_server/security"
+	"RDMS_server/structs"
 	"encoding/json"
 	"net/http"
 )

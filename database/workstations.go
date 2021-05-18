@@ -1,8 +1,8 @@
 package database
 
 import (
-	"Rostelecom_Device_Management_System/structs"
-	"Rostelecom_Device_Management_System/utils"
+	"RDMS_server/structs"
+	"RDMS_server/utils"
 	"errors"
 )
 
