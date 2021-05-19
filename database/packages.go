@@ -36,7 +36,7 @@ func GetPackagesList(name string) (PackagesList, error) {
 func getConfigPackagesList(cfg_id uint32) ([]Package, error) {
 	var packages []Package
 	err := db.Joins("INNER JOIN configuration_packages as cpg ON packages.id = cpg.package_id").
-		Select("packages.id, packages.name, packages.version, packages.ord, packages.path_to_file, packages.on_server").
+		Select("packages.name, packages.version, packages.ord, packages.on_server").
 		Where("cpg.config_id = ?", cfg_id).
 		Find(&packages).Error
 	return packages, err
@@ -45,7 +45,7 @@ func getConfigPackagesList(cfg_id uint32) ([]Package, error) {
 func getRulesPackagesList(rules_id uint32) ([]Package, error) {
 	var packages []Package
 	err := db.Joins("INNER JOIN configuration_packages as cpg ON packages.id = cpg.package_id").
-		Select("packages.id, packages.name, packages.version, packages.ord, packages.path_to_file, packages.on_server").
+		Select("packages.name, packages.version, packages.ord, packages.on_server").
 		Where("cpg.rules_id = ?", rules_id).
 		Find(&packages).Error
 	return packages, err

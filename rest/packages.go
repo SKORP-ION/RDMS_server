@@ -20,5 +20,10 @@ func GetPackagesList(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if packages.Len() == 0 {
+		SendResponse(http.StatusNoContent, &w, "There are no packages for this workstation")
+		return
+	}
+
 	SendResponse(http.StatusOK, &w, packages)
 }

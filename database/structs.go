@@ -45,12 +45,10 @@ func (Config) TableName() string {
 }
 
 type Package struct {
-	Id           uint32
-	Name         string
-	Version      string
-	Ord          uint8
-	Path_to_file string
-	OnServer     bool
+	Name       string
+	Version    string
+	Ord        uint8
+	OnServer   bool `gorm:"column:on_server"`
 }
 
 func (Package) TableName() string {
@@ -82,4 +80,8 @@ func (pl *PackagesList) Merge() {
 			pl.Packages[index] = pkg
 		}
 	}
+}
+
+func (pl *PackagesList) Len() int {
+	return len(pl.Packages)
 }

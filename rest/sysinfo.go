@@ -9,7 +9,7 @@ import (
 )
 
 func AddSysInfo(w http.ResponseWriter, r *http.Request) {
-	if status, _ := security.JwtAuth(r); !status {
+	if status, err := security.JwtAuth(r); !status || err != nil {
 		SendResponse(http.StatusForbidden, &w, "Unauthorized")
 		return
 	}
