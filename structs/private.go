@@ -11,6 +11,10 @@ type Workstation struct {
 	Description string `gorm:"column:description"`
 }
 
+func (Workstation) TableName() string {
+	return "workstations"
+}
+
 type Sysinfo struct {
 	Name string `json:"name"`
 	Model string `json:"model"`

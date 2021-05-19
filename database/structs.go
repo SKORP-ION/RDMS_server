@@ -34,9 +34,3 @@ func (s SysinfoModel) Create(ws *structs.Workstation, sys *structs.Sysinfo) (Sys
 func (SysinfoModel) TableName() string {
 	return "sysinfo"
 }
-
-type TokenSql struct {
-	ws_id uint32
-	token string
-	ts time.Time
-}

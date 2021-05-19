@@ -9,13 +9,14 @@ import (
 func GetWorkstations() []structs.Workstation {
 	var ws_list []structs.Workstation
 	//ws := structs.Workstation{}
-	db.Raw("SELECT * FROM workstations;").Scan(&ws_list)
+	//db.Raw("SELECT * FROM workstations;").Scan(&ws_list)
+	db.Find(&ws_list)
 	return ws_list
 }
 
 func GetWorkstationByName(name string) (structs.Workstation, error) {
 	ws := structs.Workstation{}
-	db.Raw("SELECT * FROM workstations WHERE name = ?;", name).Scan(&ws)
+	db.Table("workstations").Where("name = ?", name).First(&ws)
 	if ws.Id == 0 {
 		return ws, errors.New("Workstation not found")
 	}
