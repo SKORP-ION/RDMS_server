@@ -26,7 +26,8 @@ func main() {
 	r.HandleFunc("/public/workstations/registerWS", rest.RegisteringWorkStation).Methods("POST")
 
 	//private URI
-	r.HandleFunc("/private/sysinfo", rest.AddSysInfo).Methods("POST")
+	r.HandleFunc("/private/sysinfo/putInfo", rest.AddSysInfo).Methods("POST")
+	r.HandleFunc("/private/packages/getPackagesList", rest.GetPackagesList).Methods("GET")
 
 	//URI администратора
 	r.HandleFunc("/admin/workstations/getWS", rest.GetWorkstations).Methods("GET")
