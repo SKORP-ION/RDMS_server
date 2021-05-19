@@ -21,6 +21,8 @@ func main() {
 	//Создание роутера и привязывание адресов к функциям
 	r := mux.NewRouter()
 
+
+
 	//public URI
 	r.HandleFunc("/public/authorization", rest.Authorization).Methods("POST")
 	r.HandleFunc("/public/workstations/registerWS", rest.RegisteringWorkStation).Methods("POST")
@@ -30,13 +32,14 @@ func main() {
 	r.HandleFunc("/private/packages/getPackagesList", rest.GetPackagesList).Methods("GET")
 
 	//URI администратора
-	r.HandleFunc("/admin/workstations/getWS", rest.GetWorkstations).Methods("GET")
+	//r.HandleFunc("/admin/workstations/getWS", rest.GetWorkstations).Methods("GET")
+
+
 
 	addr := os.Getenv("srv_host") + ":" + os.Getenv("srv_port")
 	fmt.Printf("Server started at %s", addr)
 
 	//Старт сервиса
 	log.Fatal(http.ListenAndServe(addr, r))
-	//TODO:Протестить авторизацию по токену
 }
 

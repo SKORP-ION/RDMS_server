@@ -5,6 +5,7 @@ type Package struct {
 	Version    string
 	Ord        uint8
 	OnServer   bool `gorm:"column:on_server"`
+	Md5	       string
 }
 
 func (Package) TableName() string {
