@@ -3,13 +3,13 @@ package rest
 import (
 	"RDMS_server/database"
 	"RDMS_server/security"
-	"RDMS_server/structs"
+	"RDMS_server/structures"
 	"encoding/json"
 	"net/http"
 )
 
 func Authorization(w http.ResponseWriter, r *http.Request) {
-	var recv structs.Workstation
+	var recv structures.Workstation
 
 	err := json.NewDecoder(r.Body).Decode(&recv)
 	if err != nil {

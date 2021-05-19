@@ -1,8 +1,8 @@
-package structs
+package structures
 
 type Workstation struct {
 	Id uint32 `gorm:"column:id"`
-	Name string `gorm:"colummn:name" json:"name"`
+	Name string `gorm:"colummn:name"`
 	Serial string `gorm:"column:serial_number"`
 	Group uint16 `gorm:"column:group"`
 	Config uint16 `gorm:"column:config"`
@@ -13,17 +13,4 @@ type Workstation struct {
 
 func (Workstation) TableName() string {
 	return "workstations"
-}
-
-type Sysinfo struct {
-	Name string `json:"name"`
-	Model string `json:"model"`
-	Cpu string `json:"cpu"`
-	Ram string `json:"ram"`
-	MBSerial string `json:"MBSerial"`
-	Arch string `json:"arch"`
-	Core string `json:"core"`
-	Os string `json:"os"`
-	RDMS_Version string `json:"rdms_version"`
-	Anydesk string `json:"anydesk"`
 }

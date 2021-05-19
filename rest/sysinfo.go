@@ -3,7 +3,7 @@ package rest
 import (
 	"RDMS_server/database"
 	"RDMS_server/security"
-	"RDMS_server/structs"
+	"RDMS_server/structures"
 	"encoding/json"
 	"net/http"
 )
@@ -13,7 +13,7 @@ func AddSysInfo(w http.ResponseWriter, r *http.Request) {
 		SendResponse(http.StatusForbidden, &w, "Unauthorized")
 		return
 	}
-	sysinfo := structs.Sysinfo{}
+	sysinfo := structures.Sysinfo{}
 	err := json.NewDecoder(r.Body).Decode(&sysinfo)
 
 	if err != nil {

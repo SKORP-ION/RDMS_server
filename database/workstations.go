@@ -1,21 +1,21 @@
 package database
 
 import (
-	"RDMS_server/structs"
+	"RDMS_server/structures"
 	"RDMS_server/utils"
 	"errors"
 )
 
-func GetWorkstations() []structs.Workstation {
-	var ws_list []structs.Workstation
-	//ws := structs.Workstation{}
+func GetWorkstations() []structures.Workstation {
+	var ws_list []structures.Workstation
+	//ws := structures.Workstation{}
 	//db.Raw("SELECT * FROM workstations;").Scan(&ws_list)
 	db.Find(&ws_list)
 	return ws_list
 }
 
-func GetWorkstationByName(name string) (structs.Workstation, error) {
-	ws := structs.Workstation{}
+func GetWorkstationByName(name string) (structures.Workstation, error) {
+	ws := structures.Workstation{}
 	db.Table("workstations").Where("name = ?", name).First(&ws)
 	if ws.Id == 0 {
 		return ws, errors.New("Workstation not found")
@@ -23,7 +23,7 @@ func GetWorkstationByName(name string) (structs.Workstation, error) {
 	return ws, nil
 }
 
-func RegisterWS(ws *structs.Workstation) error {
+func RegisterWS(ws *structures.Workstation) error {
 	ws.Personal_key = utils.GeneratePassword()
 	err := db.Table("workstations").Where("name = ?", ws.Name).Updates(ws).Error
 	return err

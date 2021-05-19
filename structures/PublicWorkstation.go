@@ -1,4 +1,4 @@
-package structs
+package structures
 
 type PublicWorkstation struct {
 	Name string `gorm:"colummn:name" json:"name"`

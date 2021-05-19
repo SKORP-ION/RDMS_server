@@ -1,10 +1,10 @@
 package database
 
-import "RDMS_server/structs"
+import "RDMS_server/structures"
 
-func PutSysinfo(ws *structs.Workstation, info *structs.Sysinfo) error {
-	s := SysinfoModel{}
-	s, err := s.Create(ws, info)
+func PutSysinfo(ws *structures.Workstation, info *structures.Sysinfo) error {
+	s := structures.SysinfoModel{}
+	err := s.Create(ws, info)
 
 	if err != nil {
 		return err

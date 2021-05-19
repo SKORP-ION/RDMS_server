@@ -2,7 +2,7 @@ package security
 
 import (
 	"RDMS_server/database"
-	"RDMS_server/structs"
+	"RDMS_server/structures"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"net/http"
@@ -48,7 +48,7 @@ func JwtAuth (r *http.Request) (bool, error) {
 
 }
 
-func CreateToken(ws structs.Workstation) (Token, error) {
+func CreateToken(ws structures.Workstation) (Token, error) {
 	tk := Token{Ws_name:ws.Name}
 	token := jwt.NewWithClaims(jwt.GetSigningMethod("HS256"), tk)
 	newToken, err := token.SignedString([]byte(os.Getenv("token_password")))
