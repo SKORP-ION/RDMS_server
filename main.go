@@ -30,6 +30,7 @@ func main() {
 	//private URI
 	r.HandleFunc("/private/sysinfo/putInfo", rest.AddSysInfo).Methods("POST")
 	r.HandleFunc("/private/packages/getPackagesList", rest.GetPackagesList).Methods("GET")
+	r.HandleFunc("/private/packages/getSessionKey", rest.CreateDownloadSession).Methods("POST")
 
 	//URI администратора
 	//r.HandleFunc("/admin/workstations/getWS", rest.GetWorkstations).Methods("GET")
@@ -41,5 +42,7 @@ func main() {
 
 	//Старт сервиса
 	log.Fatal(http.ListenAndServe(addr, r))
+
+	//TODO:Реализовать создание сессии на скачивание по запросу
 }
 
