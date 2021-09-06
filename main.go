@@ -1,11 +1,10 @@
 package main
 
 import (
+	. "RDMS_server/logging"
 	"RDMS_server/rest"
-	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
-	"log"
 	"net/http"
 	"os"
 )
@@ -15,12 +14,11 @@ func main() {
 	//Загрузка переменных окружения
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal(err)
+		Error.Fatal(err)
 	}
 
 	//Создание роутера и привязывание адресов к функциям
 	r := mux.NewRouter()
-
 
 
 	//public URI
@@ -38,10 +36,10 @@ func main() {
 
 
 	addr := os.Getenv("srv_host") + ":" + os.Getenv("srv_port")
-	fmt.Printf("Server started at %s", addr)
+	Info.Printf("Server started at %s\n", addr)
 
 	//Старт сервиса
-	log.Fatal(http.ListenAndServe(addr, r))
+	Error.Fatal(http.ListenAndServe(addr, r))
 
 	//TODO:Реализовать создание сессии на скачивание по запросу
 }

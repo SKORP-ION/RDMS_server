@@ -42,3 +42,18 @@ func WorkstationAvailability(name string) bool {
 
 	return true
 }
+
+func IsWSnotRegistered(ws *structures.Workstation) (status bool, err error) {
+	WS := structures.Workstation{}
+	err = db.Table("workstations").Where("name = ?", ws.Name).
+		Select("personal_key").Last(&WS).Error
+	if err != nil {
+		return false, err
+	}
+
+	if WS.Personal_key == "" {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}

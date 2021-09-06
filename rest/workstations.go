@@ -2,7 +2,6 @@ package rest
 
 import (
 	"RDMS_server/database"
-	"RDMS_server/security"
 	"RDMS_server/structures"
 	"encoding/json"
 	"net/http"
@@ -28,6 +27,14 @@ func RegisteringWorkStation(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if status, err := database.IsWSnotRegistered(&ws); !status {
+		SendResponse(http.StatusForbidden, &w, "Workstation with this name already exists")
+		return
+	} else if err != nil {
+		SendResponse(http.StatusInternalServerError, &w, "Internal error")
+		return
+	}
+
 	err = database.RegisterWS(&recv)
 	if err != nil {
 		SendResponse(http.StatusInternalServerError, &w, "Internal error")
@@ -37,13 +44,4 @@ func RegisteringWorkStation(w http.ResponseWriter, r *http.Request) {
 	publicWS := structures.PublicWorkstation{}.FromWs(recv)
 
 	SendResponse(http.StatusOK, &w, publicWS)
-}
-
-func GetWorkstations(w http.ResponseWriter, r *http.Request) {
-	if status, err := security.JwtAuth(r); !status || err != nil {
-		SendResponse(http.StatusUnauthorized, &w, "Unauthorized")
-		return
-	}
-	result := database.GetWorkstations()
-	SendResponse(http.StatusOK, &w, result)
 }

@@ -23,6 +23,8 @@ func (pl *PackagesList) Merge() {
 		pkg := pl.rulesPackages[i]
 		if status, index := pl.Has(&pkg); status {
 			pl.Packages[index] = pkg
+		} else {
+			pl.Packages = append(pl.Packages, pkg)
 		}
 	}
 }
@@ -37,4 +39,8 @@ func (pl *PackagesList) SetConfigPackages(packages []Package) {
 
 func (pl *PackagesList) SetRulesPackages(packages []Package) {
 	pl.rulesPackages = packages
+}
+
+func (pl *PackagesList) Sent() []Package {
+	return pl.Packages
 }
